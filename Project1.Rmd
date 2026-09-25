@@ -1,0 +1,18 @@
+---
+title: "Project 1 - Chess Tournament Data"
+author: "Mohd Afwan Shaikh"
+date: "2026-09-23"
+output:
+  html_document:
+    theme: yeti
+    highlight: tango
+    toc: true
+    toc_float: true
+---
+# Approach
+
+For this project, I will work with a text file containing chess tournament results. The file contains information about each player's name, state, total points, pre-tournament rating, and the opponents they played.
+
+I will use R to clean and organize the text data. I will extract the important information for each player and use the opponent numbers to find each opponent's pre-tournament rating. I will then calculate the average opponent rating for every player.
+
+Finally, I will create a clean data frame containing the player's name, state, total points, pre-rating, and average opponent pre-rating, and export the results as a CSV file.
