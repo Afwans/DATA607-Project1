@@ -4,6 +4,12 @@
 
 **Author:** Mohd Afwan Shaikh
 
+An analysis of chess tournament results for 64 players using R, with an interactive dashboard for exploring player performance, opponent ratings, and state rankings.
+
+## Explore the Project
+
+**[View Published Analysis on RPubs](http://rpubs.com/AfwanS/1462163)**
+
 ## Project Overview
 
 This project transforms raw chess tournament results into a clean dataset using R.
@@ -48,10 +54,15 @@ The Shiny dashboard includes:
 
 ## Project Files
 
-- Project1.Rmd - Complete analysis
-- chess_tournament_clean.csv - Cleaned dataset
-- tournamentinfo.txt - Original tournament data
-- dashboard/app.R - Interactive dashboard application
+| File | Description |
+|---|---|
+| `Project1.Rmd` | Complete R Markdown analysis |
+| `Project1.html` | HTML version of the report |
+| `Project1.pdf` | PDF version of the report |
+| `tournamentinfo.txt` | Original tournament data |
+| `chess_tournament_clean.csv` | Cleaned dataset |
+| `dashboard/app.R` | Interactive Shiny dashboard |
+| `dashboard/chess_tournament_clean.csv` | Dashboard dataset |
 
 ## AI Acknowledgment
 
