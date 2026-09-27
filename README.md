@@ -19,7 +19,13 @@ The dataset contains 64 players and includes player names, states, tournament po
 - Exploratory data analysis and visualizations
 - Interactive Shiny dashboard
 
-## Interactive Dashboard
+
+## Interactive Chess Dashboard
+
+I created an interactive Shiny dashboard called
+**Beyond the Chessboard** to explore tournament results.
+
+[Explore Beyond the Chessboard](https://mohdafwan.shinyapps.io/beyond-the-chessboard/)
 
 The Shiny dashboard includes:
 
