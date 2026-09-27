@@ -1597,26 +1597,35 @@ border-radius: 0px;
 
 <div id="approach" class="section level1">
 <h1>Approach</h1>
-<p>For this project, I will work with a text file containing chess
+<p>For this project, I worked with a text file containing chess
 tournament results. The file contains information about each player’s
 name, state, total points, pre-tournament rating, and the opponents they
 played.</p>
-<p>I will use R to clean and organize the text data. I will extract the
-important information for each player and use the opponent numbers to
-find each opponent’s pre-tournament rating. I will then calculate the
+<p>I used R to clean and organize the text data. I extracted the
+important information for each player and used the opponent numbers to
+find each opponent’s pre-tournament rating. I then calculated the
 average opponent rating for every player.</p>
-<p>Finally, I will create a clean data frame containing the player’s
-name, state, total points, pre-rating, and average opponent pre-rating,
-and export the results as a CSV file.</p>
+<p>Next, I created a clean data frame containing each player’s name,
+state, total points, pre-rating, and average opponent pre-rating, and
+exported the results as a CSV file.</p>
+<p>I also performed exploratory data analysis to examine the
+relationships between player ratings, opponent strength, and tournament
+performance using visualizations.</p>
+<p>Finally, I went a step further and created an interactive dashboard
+called Beyond the Chessboard using R Shiny and Plotly. The dashboard
+allows users to explore player statistics, compare ratings, analyze
+tournament performance, and view player rankings by state.</p>
+<p><a href="https://mohdafwan.shinyapps.io/beyond-the-chessboard/">Explore
+Beyond the Chessboard – Interactive Dashboard</a></p>
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In this project, I will analyze chess tournament results for 64
-players using R. My goal is to convert the original text file into a
-structured dataset containing player information and the average
-pre-tournament rating of each player’s opponents.</p>
-<p>I will also check the accuracy of the extracted data and explore the
-relationship between player ratings, opponent strength, and tournament
+<p>In this project, I analyzed chess tournament results for 64 players
+using R. My goal was to convert the original text file into a structured
+dataset containing player information and the average pre-tournament
+rating of each player’s opponents.</p>
+<p>I also checked the accuracy of the extracted data and explored the
+relationships between player ratings, opponent strength, and tournament
 performance using visualizations.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 <pre><code>## 
@@ -1774,9 +1783,14 @@ average opponent rating.</p>
 <span id="cb27-22"><a href="#cb27-22" tabindex="-1"></a></span>
 <span id="cb27-23"><a href="#cb27-23" tabindex="-1"></a><span class="co"># Extract opponents for every player</span></span>
 <span id="cb27-24"><a href="#cb27-24" tabindex="-1"></a>opponents <span class="ot">&lt;-</span> <span class="fu">apply</span>(round_data, <span class="dv">1</span>, get_opponents)</span>
-<span id="cb27-25"><a href="#cb27-25" tabindex="-1"></a></span>
-<span id="cb27-26"><a href="#cb27-26" tabindex="-1"></a><span class="co"># Display Gary Hua&#39;s opponents</span></span>
-<span id="cb27-27"><a href="#cb27-27" tabindex="-1"></a>opponents[[<span class="dv">1</span>]]</span></code></pre></div>
+<span id="cb27-25"><a href="#cb27-25" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(opponents) <span class="sc">==</span> <span class="dv">64</span>)</span>
+<span id="cb27-26"><a href="#cb27-26" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
+<span id="cb27-28"><a href="#cb27-28" tabindex="-1"></a>  <span class="fu">all</span>(<span class="fu">unlist</span>(opponents) <span class="sc">%in%</span> players<span class="sc">$</span>Player_Number)</span>
+<span id="cb27-29"><a href="#cb27-29" tabindex="-1"></a>)</span>
+<span id="cb27-30"><a href="#cb27-30" tabindex="-1"></a></span>
+<span id="cb27-31"><a href="#cb27-31" tabindex="-1"></a><span class="co"># Display Gary Hua&#39;s opponents</span></span>
+<span id="cb27-32"><a href="#cb27-32" tabindex="-1"></a>opponents[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] 39 21 18 14  7 12  4</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Check the number of opponents for each player</span></span>
 <span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">lengths</span>(opponents))</span></code></pre></div>
@@ -2092,8 +2106,8 @@ the overall distribution of tournament results.</p>
 <h3>Interpretation</h3>
 <p>The bar chart shows that 3.5 points was the most common tournament
 score, earned by 13 players.</p>
-<p>Most players earned between 2 and 4 points. Only three players earned
-6 points, while three players earned just 1 point.</p>
+<p>Most players earned between 2 and 4 points, with 44 out of 64 players
+(68.75%) falling within this range.</p>
 <p>The results show that tournament scores were concentrated around the
 middle, with fewer players achieving the highest or lowest scores.</p>
 </div>
@@ -2105,9 +2119,10 @@ middle, with fewer players achieving the highest or lowest scores.</p>
 for 64 players. I extracted player information from an unstructured text
 file and calculated the average pre-tournament rating of each player’s
 opponents.</p>
-<p>I validated the dataset by checking for missing values, duplicate
-player numbers, and calculation accuracy. I then exported the results
-into a CSV file containing the five required columns.</p>
+<p>I validated the dataset by checking for missing values and duplicate
+player numbers, and by verifying Gary Hua’s average opponent rating.. I
+then exported the results into a CSV file containing the five required
+columns.</p>
 <p>My analysis revealed three findings:</p>
 <ol style="list-style-type: decimal">
 <li><p>Player ratings and average opponent ratings had a weak positive
@@ -2119,6 +2134,9 @@ players.</p></li>
 </ol>
 <p>These findings demonstrate how R can transform unstructured text into
 useful information and support exploratory data analysis.</p>
+<p>I also developed Beyond the Chessboard, an interactive Shiny
+dashboard that allows users to explore tournament results, compare
+player ratings, and view player rankings by state.</p>
 <p>However, these relationships describe only this tournament and should
 not be interpreted as evidence of causation.</p>
 </div>

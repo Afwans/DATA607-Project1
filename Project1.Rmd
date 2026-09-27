@@ -13,18 +13,23 @@ output:
 ---
 # Approach
 
-For this project, I will work with a text file containing chess tournament results. The file contains information about each player's name, state, total points, pre-tournament rating, and the opponents they played.
+For this project, I worked with a text file containing chess tournament results. The file contains information about each player's name, state, total points, pre-tournament rating, and the opponents they played.
 
-I will use R to clean and organize the text data. I will extract the important information for each player and use the opponent numbers to find each opponent's pre-tournament rating. I will then calculate the average opponent rating for every player.
+I used R to clean and organize the text data. I extracted the important information for each player and used the opponent numbers to find each opponent's pre-tournament rating. I then calculated the average opponent rating for every player.
 
-Finally, I will create a clean data frame containing the player's name, state, total points, pre-rating, and average opponent pre-rating, and export the results as a CSV file.
+Next, I created a clean data frame containing each player's name, state, total points, pre-rating, and average opponent pre-rating, and exported the results as a CSV file.
 
+I also performed exploratory data analysis to examine the relationships between player ratings, opponent strength, and tournament performance using visualizations.
+
+Finally, I went a step further and created an interactive dashboard called Beyond the Chessboard using R Shiny and Plotly. The dashboard allows users to explore player statistics, compare ratings, analyze tournament performance, and view player rankings by state.
+
+[Explore Beyond the Chessboard – Interactive Dashboard](https://mohdafwan.shinyapps.io/beyond-the-chessboard/)
 
 # Introduction
 
-In this project, I will analyze chess tournament results for 64 players using R. My goal is to convert the original text file into a structured dataset containing player information and the average pre-tournament rating of each player's opponents.
+In this project, I analyzed chess tournament results for 64 players using R. My goal was to convert the original text file into a structured dataset containing player information and the average pre-tournament rating of each player's opponents.
 
-I will also check the accuracy of the extracted data and explore the relationship between player ratings, opponent strength, and tournament performance using visualizations.
+I also checked the accuracy of the extracted data and explored the relationships between player ratings, opponent strength, and tournament performance using visualizations.
 
 ```{r}
 library(dplyr)
@@ -161,6 +166,11 @@ get_opponents <- function(rounds) {
 
 # Extract opponents for every player
 opponents <- apply(round_data, 1, get_opponents)
+stopifnot(length(opponents) == 64)
+
+stopifnot(
+  all(unlist(opponents) %in% players$Player_Number)
+)
 
 # Display Gary Hua's opponents
 opponents[[1]]
@@ -442,7 +452,7 @@ ggplot(points_data, aes(
 
 The bar chart shows that 3.5 points was the most common tournament score, earned by 13 players.
 
-Most players earned between 2 and 4 points. Only three players earned 6 points, while three players earned just 1 point.
+Most players earned between 2 and 4 points, with 44 out of 64 players (68.75%) falling within this range.
 
 The results show that tournament scores were concentrated around the middle, with fewer players achieving the highest or lowest scores.
 
@@ -453,7 +463,7 @@ The results show that tournament scores were concentrated around the middle, wit
 
 In this project, I used R to clean and analyze chess tournament data for 64 players. I extracted player information from an unstructured text file and calculated the average pre-tournament rating of each player's opponents.
 
-I validated the dataset by checking for missing values, duplicate player numbers, and calculation accuracy. I then exported the results into a CSV file containing the five required columns.
+I validated the dataset by checking for missing values and duplicate player numbers, and by verifying Gary Hua's average opponent rating.. I then exported the results into a CSV file containing the five required columns.
 
 My analysis revealed three findings:
 
@@ -464,5 +474,7 @@ My analysis revealed three findings:
 3. The most common tournament score was 3.5 points, earned by 13 players.
 
 These findings demonstrate how R can transform unstructured text into useful information and support exploratory data analysis.
+
+I also developed Beyond the Chessboard, an interactive Shiny dashboard that allows users to explore tournament results, compare player ratings, and view player rankings by state.
 
 However, these relationships describe only this tournament and should not be interpreted as evidence of causation.
