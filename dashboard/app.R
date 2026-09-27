@@ -67,7 +67,7 @@ player_rankings$State_Rank <- ave(
   -player_rankings$Total_Points,
   player_rankings$State,
   FUN = function(x) {
-    rank(x, ties.method = "min")
+    match(x, sort(unique(x)))
   }
 )
 
@@ -731,7 +731,7 @@ server <- function(input, output, session) {
     ]
     
     data.frame(
-      Rank = selected$State_Rank,
+      Rank = as.integer(selected$State_Rank),
       Player = selected$Player_Name,
       Points = selected$Total_Points,
       Pre_Rating = selected$Pre_Rating,
